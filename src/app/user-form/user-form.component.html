@@ -1,0 +1,67 @@
+<div class="container-fluid">
+    <h1>Contact Information</h1>
+    <h2>Please fill your contact information below</h2>
+  <form #myForm="ngForm">
+
+    <div class="form-group">
+      <label>Name*</label>
+      <div class="row">
+        <div class="col-sm-4">
+          <input type="text" #fname="ngModel" required [class.is-invalid] = "fname.invalid && fname.touched" class="form-control" name="fname" ngModel>
+          <small>First Name</small>
+        </div>
+        <div class="col-sm-4">
+            <input type="text" #lname="ngModel" required [class.is-invalid] = "lname.invalid && lname.touched" class="form-control" name="Lname" ngModel>
+            <small>Last Name</small>
+          </div>
+      </div>
+      <small class="text-danger" [class.d-none]="fname.valid || fname.untouched">Name Compulsory </small>
+    </div>
+
+    <div class="form-group">
+      <label>Email Address*</label>
+      <input type="email" #email="ngModel" required [class.is-invalid] = "email.invalid && email.touched" class="form-control" name="eaddress" ngModel>
+      <small class="text-danger" pattern="^[a-zA-Z0-9_.+-]+@[a-z-]+.[a-z-.]+$" [class.d-none]="email.valid || email.untouched">Email ID Compulsory </small>
+    </div>
+
+    <div class="form-group">
+      <label>Mobile number*</label>
+      <input type="tel" class="form-control" name="mobile" #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched" ngModel>
+      <small class="text-danger" [class.d-none]="phone.valid">Phone number must be 10 digit</small>
+    </div>
+
+    <div class="form-group">
+      <label>Address</label>
+      <input type="text" #address="ngModel" required [class.is-invalid] = "address.invalid && address.touched" class="form-control" name="address" ngModel>
+      <small class="text-danger" [class.d-none]="address.valid || address.untouched">Please provide Address for contact</small>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-2">
+          <input type="text" #city="ngModel" required [class.is-invalid] = "city.invalid && city.touched" class="form-control" name="city" ngModel>
+          <small>City</small>
+          <small class="text-danger" [class.d-none]="city.valid || city.untouched">Enter City </small>
+        </div>
+        <div class="col-sm-8">    
+          <select class="custom-select" name="state" ngModel>
+            <option selected> --Select State-- </option>
+            <option *ngFor="let value of state">{{value}}</option>     
+          </select>
+          <small>State</small>
+        </div>
+        <div class="col-sm-2">
+          <input type="tel" #zip="ngModel" pattern="^\d{5}$" [class.is-invalid] = "zip.invalid && zip.touched" class="form-control" name="zip" ngModel>    
+          <small>Zip Code</small>
+          <small class="text-danger" [class.d-none]="zip.valid || zip.untouched">Enter 5 Digit zip code</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">    
+      <label for="comment">Comment:</label>
+      <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
+    <button [disabled]="myForm.form.invalid " class="btn" type="submit">SUBMIT FORM</button>
+  </form>
+</div>
